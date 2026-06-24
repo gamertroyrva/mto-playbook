@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math Trade Organizer Playbook — Wants Phase / Practice Runs</title>
+<style>
+  :root {
+    --ink: #2b2926;
+    --paper: #fbf9f5;
+    --line: #d8d3c8;
+    --accent: #8a5a3c;
+    --accent-bg: #f3e9e1;
+    --why-bg: #f7f5f0;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: 'Georgia', 'Iowan Old Style', serif;
+    background: var(--paper);
+    color: var(--ink);
+    margin: 0;
+    padding: 2rem 1.5rem 4rem;
+    line-height: 1.5;
+  }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin: 0 0 0.25rem;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    color: #7a7468;
+    font-size: 0.95rem;
+    margin: 0 0 2rem;
+    font-style: italic;
+  }
+
+  .phase-header {
+    background: var(--accent);
+    color: var(--paper);
+    padding: 0.6rem 1rem;
+    border-radius: 6px 6px 0 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-top: 2rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border: 1px solid var(--line);
+    margin-bottom: 1rem;
+  }
+
+  th {
+    text-align: left;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #7a7468;
+    border-bottom: 2px solid var(--line);
+    padding: 0.6rem 0.9rem;
+    background: var(--accent-bg);
+  }
+
+  td {
+    padding: 0.85rem 0.9rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    font-size: 0.95rem;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  .col-task {
+    width: 14%;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .col-desc {
+    width: 24%;
+  }
+
+  .col-steps {
+    width: 30%;
+  }
+
+  .col-why {
+    width: 32%;
+    background: var(--why-bg);
+    font-size: 0.9rem;
+    color: #4a463f;
+  }
+
+  .col-steps ol {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  .col-steps li {
+    margin-bottom: 0.4rem;
+  }
+
+  .col-steps li:last-child { margin-bottom: 0; }
+
+  .col-why p {
+    margin: 0 0 0.6rem;
+  }
+
+  .col-why p:last-child { margin-bottom: 0; }
+
+  .col-why ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  .col-why li {
+    margin-bottom: 0.2rem;
+  }
+
+  .note {
+    font-size: 0.85rem;
+    color: #7a7468;
+    font-style: italic;
+    margin: 0.5rem 0 2rem;
+    padding: 0.75rem 1rem;
+    border-left: 3px solid var(--line);
+    background: #f5f3ee;
+  }
+
+  @media (max-width: 800px) {
+    table, thead, tbody, th, td, tr { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 2px solid var(--line); padding: 0.75rem 0; }
+    td {
+      border-bottom: none;
+      padding: 0.35rem 0.9rem;
+    }
+    td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #7a7468;
+      margin-bottom: 0.2rem;
+    }
+    .col-task, .col-desc, .col-steps, .col-why { width: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Math Trade Organizer Playbook</h1>
+  <p class="subtitle">Draft table format — Phase 3: Wants Phase / Practice Runs. Round 1.</p>
+
+  <div class="phase-header">Phase 3 — Wants Phase / Practice Runs</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="col-task">Task</th>
+        <th class="col-desc">Task Description</th>
+        <th class="col-steps">Task Steps</th>
+        <th class="col-why">Why Do This</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td class="col-task" data-label="Task">Capture Practice Run Data</td>
+        <td class="col-desc" data-label="Description">
+          The starting point of every practice run — pulling the current wants list and a fresh TradeMaximizer run into local files for processing.
+        </td>
+        <td class="col-steps" data-label="Steps">
+          <ol>
+            <li>Create a new practice run subfolder on your computer.</li>
+            <li>Open a text editor and create two blank text files.</li>
+            <li>Go to the math trade's "edit info" page on OLWLG.</li>
+            <li>Click "click here to read the online wants submissions" — select all, copy, paste into the first file, save.</li>
+            <li>Find the line "If you want to test (using the wants submitted so far) run the JavaScript version of TradeMaximizer click here" and click it.</li>
+            <li>On the page that opens, click Run. Results scroll on the page — select all, copy, paste into the second file, save.</li>
+          </ol>
+        </td>
+        <td class="col-why" data-label="Why">
+          <p>Both files capture a snapshot of the trade at this exact moment — what's been submitted, and what the algorithm would produce if the trade ended right now.</p>
+          <p>Everything downstream — the tracker, the communication, the anomaly review — depends on these two files.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="col-task" data-label="Task">Update the Results Tracker</td>
+        <td class="col-desc" data-label="Description">
+          A handful of numbers, pulled from the two captured files, drive a running spreadsheet of submission and trade statistics across all practice runs.
+        </td>
+        <td class="col-steps" data-label="Steps">
+          <ol>
+            <li>Open the Results Tracker spreadsheet.</li>
+            <li>Add a new row for this practice run.</li>
+            <li>Enter the manual input fields — Missing Wants, Missing Users, Games w/ Trades — sourced from the two captured files.</li>
+            <li>The spreadsheet automatically calculates Submitted Users, Submitted Games, percentages, and Users w/ Trades.</li>
+          </ol>
+        </td>
+        <td class="col-why" data-label="Why">
+          <p>A few inputs produce a rich, comparable view of how the trade is shaping up over time — submission rates climbing, trade outcomes improving.</p>
+          <p>This data feeds directly into the communication that follows.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="col-task" data-label="Task">Formulate Results Communication</td>
+        <td class="col-desc" data-label="Description">
+          Draft the practice run update for participants — a short, encouraging summary of where the trade stands, built from the tracker's numbers.
+        </td>
+        <td class="col-steps" data-label="Steps">
+          <ol>
+            <li>Open the standing communication template (Google Doc).</li>
+            <li>Note the time the practice run was captured.</li>
+            <li>Pull the four headline numbers from the Results Tracker: submitted users (of total), submitted games (of total), users who would trade, games that would trade.</li>
+            <li>Write 1-2 sentences of situational framing — acknowledge the milestone, speak to what's changed since the last update.</li>
+            <li>Confirm the boilerplate (practice/not-final disclaimers, link to the OLWLG pending results summary) is intact.</li>
+          </ol>
+        </td>
+        <td class="col-why" data-label="Why">
+          <p>Participants want to see momentum — a quick, encouraging snapshot keeps energy up during the submission window.</p>
+          <p>The disclaimers matter: these are practice numbers, and nobody should mistake them for final results.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="col-task" data-label="Task">Upload Results to OLWLG</td>
+        <td class="col-desc" data-label="Description">
+          Before the communication goes out, the freshly captured results need to be uploaded to OLWLG so the "pending results summary" link in that communication actually reflects this practice run.
+        </td>
+        <td class="col-steps" data-label="Steps">
+          <ol>
+            <li>On the OLWLG "edit info" page, scroll to "Upload Official (TradeMaximizer) Results."</li>
+            <li>Click the upload tool link.</li>
+            <li>Browse to the results file saved on your computer (from Capture Practice Run Data).</li>
+            <li>Click Upload.</li>
+            <li>Click through to the "pending results summary" page and peek at it for a minute or two to confirm it updated.</li>
+          </ol>
+        </td>
+        <td class="col-why" data-label="Why">
+          <p>The communication points participants to a live OLWLG page — if that page isn't refreshed first, participants clicking through will see stale (or no) results.</p>
+          <p>This step makes the link in the communication actually mean something.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="col-task" data-label="Task">Send Results Communication</td>
+        <td class="col-desc" data-label="Description">
+          Post the formulated communication to the community.
+        </td>
+        <td class="col-steps" data-label="Steps">
+          <ol>
+            <li>Paste the formulated communication into the Discord "updates" channel.</li>
+          </ol>
+        </td>
+        <td class="col-why" data-label="Why">
+          <p>This is the moment the practice run becomes visible to the community — getting it out is treated as a priority, even at odd hours, because participants check in on their own schedule.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="col-task" data-label="Task">Perform Anomaly Review</td>
+        <td class="col-desc" data-label="Description">
+          A mandatory quality check — run the anomaly detector against the practice run results to catch likely mistakes before they become a pattern.
+        </td>
+        <td class="col-steps" data-label="Steps">
+          <ol>
+            <li>Run the anomaly detector program against the captured results.</li>
+            <li>Review flags for duplicate-protection issues (e.g., someone receiving multiple copies of the same item).</li>
+            <li>Review flags for significant value mismatches between what a participant gives and receives.</li>
+          </ol>
+        </td>
+        <td class="col-why" data-label="Why">
+          <p>Most flags turn out to be participants who know exactly what they're doing — but occasionally a flag catches a real mistake while there's still time to fix it before the final run.</p>
+          <p>This is the organizer's responsibility to the trade's integrity, not optional.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="col-task" data-label="Task">Review Pending Results Summary</td>
+        <td class="col-desc" data-label="Description">
+          A person-by-person look at the practice run's outcomes — checking in on how individual participants, especially newcomers, are faring.
+        </td>
+        <td class="col-steps" data-label="Steps">
+          <ol>
+            <li>Open the OLWLG pending results summary.</li>
+            <li>Look through individual participants' results, paying particular attention to newcomers.</li>
+            <li>Confirm new participants received trades and that those trades look reasonable.</li>
+            <li>Engage with participants about their results where it feels natural (e.g., on Discord).</li>
+          </ol>
+        </td>
+        <td class="col-why" data-label="Why">
+          <p>New participants are taking a leap of faith on their first trade.</p>
+          <p>Seeing that it worked out for them — right there in their first practice run — builds the kind of community that keeps people coming back.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="col-task" data-label="Task">Monitoring &amp; Nudging Submissions</td>
+        <td class="col-desc" data-label="Description">
+          An ongoing thread throughout the Wants Phase — keeping track of who has and hasn't submitted, and nudging the ones who haven't, with the urgency and approach shifting as deadlines approach.
+        </td>
+        <td class="col-steps" data-label="Steps">
+          <ol>
+            <li>Periodically check the OLWLG Users page for submission status.</li>
+            <li>Sort the Users page by Item Count (descending), then by Submitted Wants — this surfaces non-submitters with the most items in the trade.</li>
+            <li>For participants on Discord (the large majority in a local trade), reach out personally — a DM, a check-in.</li>
+            <li>For the remaining holdouts, use the "Geekmail the N users who have not submitted" link — review and prune the recipient list to avoid double-reaching anyone already contacted personally.</li>
+            <li>Repeat as the deadline approaches, with personal outreach increasingly focused on whoever remains with the highest item count.</li>
+          </ol>
+        </td>
+        <td class="col-why" data-label="Why">
+          <p>Not all non-submitters are equal — someone with 100 items in the trade not submitting affects far more loops than someone with 4. Sorting surfaces who matters most to reach.</p>
+          <p>The mix of personal and broad-brush outreach respects both the organizer's time and participants' patience. As the list shrinks, the organizer ends up rooting for the last few — sometimes the trade reaches 100% submission, sometimes it doesn't, but the effort is what closes that gap as much as possible.</p>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <p class="note">
+    Scope note: placeholder — to be drafted once the table is stable.
+  </p>
+
+</div>
+</body>
+</html>

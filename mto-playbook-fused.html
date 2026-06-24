@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math Trade Organizer Playbook</title>
+<style>
+  :root {
+    --ink: #2b2926;
+    --paper: #fbf9f5;
+    --line: #d8d3c8;
+    --accent: #8a5a3c;
+    --accent-bg: #f3e9e1;
+    --why-bg: #f7f5f0;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: 'Georgia', 'Iowan Old Style', serif;
+    background: var(--paper);
+    color: var(--ink);
+    margin: 0;
+    padding: 0 1.5rem 4rem;
+    line-height: 1.5;
+  }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin: 2rem 0 1.25rem;
+    font-weight: 700;
+  }
+
+  /* ── Tab bar ── */
+  .tab-bar {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 2rem;
+  }
+
+  .tab-bar button {
+    background: none;
+    border: 1px solid var(--line);
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    color: var(--ink);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    margin-right: 4px;
+    padding: 0.55rem 1.1rem;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .tab-bar button:hover {
+    background: var(--accent-bg);
+  }
+
+  .tab-bar button.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--paper);
+  }
+
+  /* ── Phase panels ── */
+  .phase-panel { display: none; }
+  .phase-panel.active { display: block; }
+
+  .subtitle {
+    color: #7a7468;
+    font-size: 0.95rem;
+    margin: 0 0 2rem;
+    font-style: italic;
+  }
+
+  .phase-header {
+    background: var(--accent);
+    color: var(--paper);
+    padding: 0.6rem 1rem;
+    border-radius: 6px 6px 0 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-top: 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border: 1px solid var(--line);
+    margin-bottom: 1rem;
+  }
+
+  th {
+    text-align: left;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #7a7468;
+    border-bottom: 2px solid var(--line);
+    padding: 0.6rem 0.9rem;
+    background: var(--accent-bg);
+  }
+
+  td {
+    padding: 0.85rem 0.9rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    font-size: 0.95rem;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  .col-task {
+    width: 14%;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .col-desc { width: 24%; }
+  .col-steps { width: 30%; }
+
+  .col-why {
+    width: 32%;
+    background: var(--why-bg);
+    font-size: 0.9rem;
+    color: #4a463f;
+  }
+
+  .col-steps ol {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  .col-steps li { margin-bottom: 0.4rem; }
+  .col-steps li:last-child { margin-bottom: 0; }
+
+  .col-why p { margin: 0 0 0.6rem; }
+  .col-why p:last-child { margin-bottom: 0; }
+
+  .col-why ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  .col-why li { margin-bottom: 0.2rem; }
+
+  .note {
+    font-size: 0.85rem;
+    color: #7a7468;
+    font-style: italic;
+    margin: 0.5rem 0 2rem;
+    padding: 0.75rem 1rem;
+    border-left: 3px solid var(--line);
+    background: #f5f3ee;
+  }
+
+  @media (max-width: 800px) {
+    .tab-bar { flex-wrap: wrap; }
+    .tab-bar button { font-size: 0.8rem; padding: 0.45rem 0.7rem; margin-bottom: 2px; }
+    table, thead, tbody, th, td, tr { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 2px solid var(--line); padding: 0.75rem 0; }
+    td { border-bottom: none; padding: 0.35rem 0.9rem; }
+    td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #7a7468;
+      margin-bottom: 0.2rem;
+    }
+    .col-task, .col-desc, .col-steps, .col-why { width: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Math Trade Organizer Playbook</h1>
+
+  <div class="tab-bar">
+    <button class="active" onclick="showTab('phase1', this)">Phase 1 · Awareness &amp; Recruiting</button>
+    <button onclick="showTab('phase2', this)">Phase 2 · Offer Up Games</button>
+    <button onclick="showTab('phase3', this)">Phase 3 · Wants Phase</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       PHASE 1 — Awareness & Recruiting
+  ════════════════════════════════════════════════════ -->
+  <div id="phase1" class="phase-panel active">
+
+    <p class="subtitle">Draft table format — Phase 1: Awareness &amp; Recruiting. Round 1.</p>
+
+    <div class="phase-header">Phase 1 — Awareness &amp; Recruiting</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th class="col-task">Task</th>
+          <th class="col-desc">Task Description</th>
+          <th class="col-steps">Task Steps</th>
+          <th class="col-why">Why Do This</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td class="col-task" data-label="Task">Venue Lock-In</td>
+          <td class="col-desc" data-label="Description">
+            Securing the in-person swap venue.
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>Confirm date, time, and location for the in-person swap event with the venue (e.g., Unplugged Board Games Cafe).</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>Every other Phase 1 activity references swap-day details. Locking the venue first means the schedule, the Facebook post, and outreach can all speak with confidence instead of "TBD."</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="col-task" data-label="Task">Build the Trade Schedule</td>
+          <td class="col-desc" data-label="Description">
+            Establish the full trade schedule and document it in the math trade project plan document.
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>Set dates for the GeekList window (open/close), the wants/submission window, the results announcement, and the swap event.</li>
+              <li>Record the full schedule in the math trade project plan document.</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>Troy prefers a two-week Offer Up Games phase to allow newbies to be found and still have time to join.</p>
+            <p>This schedule becomes the backbone of the Facebook Announcement Post and everything that follows.</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="col-task" data-label="Task">Facebook Announcement Post</td>
+          <td class="col-desc" data-label="Description">
+            A post to the Richmond, VA Board Games Facebook group, 2-3 weeks ahead of the GeekList launch (refer to prior FB MT announcements to avoid recreating the wheel).
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>Draft a post with the full trade timeline, framed for returners and newcomers alike (emphasize flexibility — any number of games).</li>
+              <li>Post to the Richmond, VA Board Games Facebook group.</li>
+              <li>Point questions to Discord (comment with invite link).</li>
+              <li>Promise a follow-up post when the GeekList opens.</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>This is where the RVA board gamer community lives — the highest-leverage single post of the phase. It plants the flag and seeds the Phase 2 follow-up post, so the two phases work together rather than duplicating effort.</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="col-task" data-label="Task">Sing from the Mountain Tops</td>
+          <td class="col-desc" data-label="Description">
+            An open-ended, improvisational task — whatever it takes to extend the trade's reach beyond the core RVA community.
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>Reach out directly to contacts in other regions (e.g., via Discord DM) and ask them to spread the word in their own communities.</li>
+              <li>Review past event attendee lists (e.g., RiVirCon manifest) for people outside the RVA metro with an existing relationship, and reach out directly (e.g., email).</li>
+              <li>Loop in participants from other recent trades (e.g., Eastern USA math trade).</li>
+              <li>Devise and act on additional outreach ideas as they come to mind.</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>This extends the trade's reach beyond what's strictly necessary to run one, which means more math trade magic for everyone involved.</p>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <p class="note">
+      Scope note: this reflects the full "Troy edition" of running this trade. A minimal viable Phase 1 is the first two tasks — Venue Lock-In and Build the Trade Schedule — plus the Facebook Announcement Post. Sing from the Mountain Tops is a discretionary layer: regional relay contacts, mining past event attendee lists, and looping in other trades' participants are all extra effort beyond what's required, layered on by an organizer who wants the trade to shine for everyone involved.
+    </p>
+
+  </div><!-- /phase1 -->
+
+  <!-- ═══════════════════════════════════════════════════
+       PHASE 2 — Offer Up Games
+  ════════════════════════════════════════════════════ -->
+  <div id="phase2" class="phase-panel">
+
+    <p class="subtitle">Draft table format — Phase 2: Offer Up Games. Round 3 revision.</p>
+
+    <div class="phase-header">Phase 2 — Offer Up Games</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th class="col-task">Task</th>
+          <th class="col-desc">Task Description</th>
+          <th class="col-steps">Task Steps</th>
+          <th class="col-why">Why Do This</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td class="col-task" data-label="Task">GeekList Creation &amp; Launch</td>
+          <td class="col-desc" data-label="Description">
+            The kickoff moment of this phase — the abstract excitement of the prior phase becomes a concrete, public artifact people can act on.
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>Clone the prior trade's GeekList rather than starting from scratch — bring over the rules/guidelines description.</li>
+              <li>Edit the ruleset only if needed (rare).</li>
+              <li>Update timing info in two places: human-readable at the top of the description, machine-readable at the bottom.</li>
+              <li>Create the GeekList as Public from the start (not a later toggle).</li>
+              <li>Run the OLWLG CGI registration step, using zip code 23113.</li>
+              <li>Once ~25+ games are added, take it out of Draft mode and publish.</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>Creating it as Public from the start avoids a setup mistake that's awkward to fix later.</p>
+            <p>Cloning the prior GeekList preserves a long, mostly-reusable rules block instead of rebuilding it each trade.</p>
+            <p>23113 is the zip Troy uses for local no-ship trades.</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="col-task" data-label="Task">Discord Channel Setup</td>
+          <td class="col-desc" data-label="Description">
+            The standing Math Trade RVA Discord server gets a new section of channels for this trade.
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>For each channel (what-where-when, updates, q-and-a, make-a-wish): copy the description from the prior trade's matching channel.</li>
+              <li>Create the new channel in this trade's section.</li>
+              <li>Save, then edit the channel and paste the description in.</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>A separate channel section per trade keeps things organized — channels don't bleed into one another across trades.</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="col-task" data-label="Task">Advertising &amp; Awareness</td>
+          <td class="col-desc" data-label="Description">
+            Three channels do the heavy lifting; a long tail of smaller channels matters too.
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>Post in the Richmond, VA Board Games Facebook group.</li>
+              <li>Lean on the Math Trade RVA Discord server — regulars returning, plus new joiners arriving via word of mouth between trades.</li>
+              <li>Once the GeekList is live, send a GeekMail blast to past participants.</li>
+              <li>Decide whether to post to BGG's broader Math Trade Announcement Thread.</li>
+              <li>Work the long-tail channels as opportunities arise.</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>Facebook, Discord, and GeekMail each reach a different slice of the participant pool — new local awareness, returning regulars, and past participants directly.</p>
+            <p>Since this is a local trade, broadcasting to the Announcement Thread's international audience is optional.</p>
+            <p>Long-tail channels:</p>
+            <ul>
+              <li>RVA Board Gaming (Facebook)</li>
+              <li>Unplugged Discord Server</li>
+              <li>The Kallax Discord Server</li>
+              <li>VA Creepers Discord Server</li>
+              <li>RiVirCon Discord Server</li>
+              <li>Early Morning Gamers Discord Server</li>
+              <li>In-person meetups</li>
+              <li>QR codes (Discord invite, "ease-in guide")</li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="col-task" data-label="Task">Monitoring GeekList Additions</td>
+          <td class="col-desc" data-label="Description">
+            A recurring habit, several times a day: check what's new on the GeekList, sync it to OLWLG, and stay on top of participant questions in GeekList comments and on Discord.
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>Turn on the Tampermonkey sync script for this trade.</li>
+              <li>Check BGG for GeekList subscription notifications.</li>
+              <li>Browse new entries — note anything that looks insufficient or rule-violating.</li>
+              <li>Watch GeekList item comments for unanswered questions, especially from new participants.</li>
+              <li>Sync the GeekList to OLWLG (if Tampermonkey script is off for some reason).</li>
+              <li>Check Discord channels (what-where-when, updates, q-and-a, make-a-wish).</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>One of the main reasons for syncing periodically is viewability — OLWLG's synced view is sortable and viewable as a single page, where the GeekList itself is painful to browse at 25 items per page.</p>
+            <p>Additionally, serious participants begin building out their want lists incrementally even during this two-week phase, and depend on that synced view staying current.</p>
+            <p>The organizer is making sure questions get answered, especially from new participants — and catching insufficient or rule-violating entries early.</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="col-task" data-label="Task">Tracking &amp; Encouraging Participation</td>
+          <td class="col-desc" data-label="Description">
+            Tracking the ever-growing list of participants for the math trade, observing who hasn't yet joined, and reaching out to encourage them — both broad and targeted reach-outs happen during these two weeks.
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>Maintain the Math Trade Tracker Google Sheet. Upper section: this trade's participants. Lower section: historical participants.</li>
+              <li>As people join the current trade, move their row from the lower section to the upper section.</li>
+              <li>While scanning the lower section, identify past participants who haven't joined yet.</li>
+              <li>Personally reach out to those people — a check-in, an invite, a nudge.</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>The two-week window gives organic growth room to happen — someone joins on day 3, tells a friend, and that friend joins on day 11.</p>
+            <p>The Tracker duplicates what OLWLG's user list already shows — but that's okay. Comparing who's joined against who's participated before surfaces exactly the people worth a personal reach-out. The two-week phase gives people time to jump in, and the outreach helps find people who'd want to but may have lost track of time or awareness.</p>
+            <p>The Tracker's three identities per person (BGG handle, real name, Discord handle) get published ahead of the Swap Phase and feed the name tags handed out at the swap event — the work done here pays off twice.</p>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <p class="note">
+      Scope note: this reflects the full "Troy edition" of running this trade — including the discretionary layer added by maintaining a year-round Discord community. Most math trades use only a BGG discussion thread (no Discord, no third identity to track). A leaner, approachable version aimed at a prospective organizer would largely be this table with everything Discord-dependent removed.
+    </p>
+
+  </div><!-- /phase2 -->
+
+  <!-- ═══════════════════════════════════════════════════
+       PHASE 3 — Wants Phase / Practice Runs
+  ════════════════════════════════════════════════════ -->
+  <div id="phase3" class="phase-panel">
+
+    <p class="subtitle">Draft table format — Phase 3: Wants Phase / Practice Runs. Round 1.</p>
+
+    <div class="phase-header">Phase 3 — Wants Phase / Practice Runs</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th class="col-task">Task</th>
+          <th class="col-desc">Task Description</th>
+          <th class="col-steps">Task Steps</th>
+          <th class="col-why">Why Do This</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td class="col-task" data-label="Task">Capture Practice Run Data</td>
+          <td class="col-desc" data-label="Description">
+            The starting point of every practice run — pulling the current wants list and a fresh TradeMaximizer run into local files for processing.
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>Create a new practice run subfolder on your computer.</li>
+              <li>Open a text editor and create two blank text files.</li>
+              <li>Go to the math trade's "edit info" page on OLWLG.</li>
+              <li>Click "click here to read the online wants submissions" — select all, copy, paste into the first file, save.</li>
+              <li>Find the line "If you want to test (using the wants submitted so far) run the JavaScript version of TradeMaximizer click here" and click it.</li>
+              <li>On the page that opens, click Run. Results scroll on the page — select all, copy, paste into the second file, save.</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>Both files capture a snapshot of the trade at this exact moment — what's been submitted, and what the algorithm would produce if the trade ended right now.</p>
+            <p>Everything downstream — the tracker, the communication, the anomaly review — depends on these two files.</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="col-task" data-label="Task">Update the Results Tracker</td>
+          <td class="col-desc" data-label="Description">
+            A handful of numbers, pulled from the two captured files, drive a running spreadsheet of submission and trade statistics across all practice runs.
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>Open the Results Tracker spreadsheet.</li>
+              <li>Add a new row for this practice run.</li>
+              <li>Enter the manual input fields — Missing Wants, Missing Users, Games w/ Trades — sourced from the two captured files.</li>
+              <li>The spreadsheet automatically calculates Submitted Users, Submitted Games, percentages, and Users w/ Trades.</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>A few inputs produce a rich, comparable view of how the trade is shaping up over time — submission rates climbing, trade outcomes improving.</p>
+            <p>This data feeds directly into the communication that follows.</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="col-task" data-label="Task">Formulate Results Communication</td>
+          <td class="col-desc" data-label="Description">
+            Draft the practice run update for participants — a short, encouraging summary of where the trade stands, built from the tracker's numbers.
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>Open the standing communication template (Google Doc).</li>
+              <li>Note the time the practice run was captured.</li>
+              <li>Pull the four headline numbers from the Results Tracker: submitted users (of total), submitted games (of total), users who would trade, games that would trade.</li>
+              <li>Write 1-2 sentences of situational framing — acknowledge the milestone, speak to what's changed since the last update.</li>
+              <li>Confirm the boilerplate (practice/not-final disclaimers, link to the OLWLG pending results summary) is intact.</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>Participants want to see momentum — a quick, encouraging snapshot keeps energy up during the submission window.</p>
+            <p>The disclaimers matter: these are practice numbers, and nobody should mistake them for final results.</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="col-task" data-label="Task">Upload Results to OLWLG</td>
+          <td class="col-desc" data-label="Description">
+            Before the communication goes out, the freshly captured results need to be uploaded to OLWLG so the "pending results summary" link in that communication actually reflects this practice run.
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>On the OLWLG "edit info" page, scroll to "Upload Official (TradeMaximizer) Results."</li>
+              <li>Click the upload tool link.</li>
+              <li>Browse to the results file saved on your computer (from Capture Practice Run Data).</li>
+              <li>Click Upload.</li>
+              <li>Click through to the "pending results summary" page and peek at it for a minute or two to confirm it updated.</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>The communication points participants to a live OLWLG page — if that page isn't refreshed first, participants clicking through will see stale (or no) results.</p>
+            <p>This step makes the link in the communication actually mean something.</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="col-task" data-label="Task">Send Results Communication</td>
+          <td class="col-desc" data-label="Description">
+            Post the formulated communication to the community.
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>Paste the formulated communication into the Discord "updates" channel.</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>This is the moment the practice run becomes visible to the community — getting it out is treated as a priority, even at odd hours, because participants check in on their own schedule.</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="col-task" data-label="Task">Perform Anomaly Review</td>
+          <td class="col-desc" data-label="Description">
+            A mandatory quality check — run the anomaly detector against the practice run results to catch likely mistakes before they become a pattern.
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>Run the anomaly detector program against the captured results.</li>
+              <li>Review flags for duplicate-protection issues (e.g., someone receiving multiple copies of the same item).</li>
+              <li>Review flags for significant value mismatches between what a participant gives and receives.</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>Most flags turn out to be participants who know exactly what they're doing — but occasionally a flag catches a real mistake while there's still time to fix it before the final run.</p>
+            <p>This is the organizer's responsibility to the trade's integrity, not optional.</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="col-task" data-label="Task">Review Pending Results Summary</td>
+          <td class="col-desc" data-label="Description">
+            A person-by-person look at the practice run's outcomes — checking in on how individual participants, especially newcomers, are faring.
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>Open the OLWLG pending results summary.</li>
+              <li>Look through individual participants' results, paying particular attention to newcomers.</li>
+              <li>Confirm new participants received trades and that those trades look reasonable.</li>
+              <li>Engage with participants about their results where it feels natural (e.g., on Discord).</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>New participants are taking a leap of faith on their first trade.</p>
+            <p>Seeing that it worked out for them — right there in their first practice run — builds the kind of community that keeps people coming back.</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="col-task" data-label="Task">Monitoring &amp; Nudging Submissions</td>
+          <td class="col-desc" data-label="Description">
+            An ongoing thread throughout the Wants Phase — keeping track of who has and hasn't submitted, and nudging the ones who haven't, with the urgency and approach shifting as deadlines approach.
+          </td>
+          <td class="col-steps" data-label="Steps">
+            <ol>
+              <li>Periodically check the OLWLG Users page for submission status.</li>
+              <li>Sort the Users page by Item Count (descending), then by Submitted Wants — this surfaces non-submitters with the most items in the trade.</li>
+              <li>For participants on Discord (the large majority in a local trade), reach out personally — a DM, a check-in.</li>
+              <li>For the remaining holdouts, use the "Geekmail the N users who have not submitted" link — review and prune the recipient list to avoid double-reaching anyone already contacted personally.</li>
+              <li>Repeat as the deadline approaches, with personal outreach increasingly focused on whoever remains with the highest item count.</li>
+            </ol>
+          </td>
+          <td class="col-why" data-label="Why">
+            <p>Not all non-submitters are equal — someone with 100 items in the trade not submitting affects far more loops than someone with 4. Sorting surfaces who matters most to reach.</p>
+            <p>The mix of personal and broad-brush outreach respects both the organizer's time and participants' patience. As the list shrinks, the organizer ends up rooting for the last few — sometimes the trade reaches 100% submission, sometimes it doesn't, but the effort is what closes that gap as much as possible.</p>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <p class="note">
+      Scope note: placeholder — to be drafted once the table is stable.
+    </p>
+
+  </div><!-- /phase3 -->
+
+</div><!-- /wrap -->
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.phase-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-bar button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>

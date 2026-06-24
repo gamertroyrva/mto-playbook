@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math Trade Organizer Playbook — Offer Up Games</title>
+<style>
+  :root {
+    --ink: #2b2926;
+    --paper: #fbf9f5;
+    --line: #d8d3c8;
+    --accent: #8a5a3c;
+    --accent-bg: #f3e9e1;
+    --why-bg: #f7f5f0;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: 'Georgia', 'Iowan Old Style', serif;
+    background: var(--paper);
+    color: var(--ink);
+    margin: 0;
+    padding: 2rem 1.5rem 4rem;
+    line-height: 1.5;
+  }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin: 0 0 0.25rem;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    color: #7a7468;
+    font-size: 0.95rem;
+    margin: 0 0 2rem;
+    font-style: italic;
+  }
+
+  .phase-header {
+    background: var(--accent);
+    color: var(--paper);
+    padding: 0.6rem 1rem;
+    border-radius: 6px 6px 0 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-top: 2rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border: 1px solid var(--line);
+    margin-bottom: 1rem;
+  }
+
+  th {
+    text-align: left;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #7a7468;
+    border-bottom: 2px solid var(--line);
+    padding: 0.6rem 0.9rem;
+    background: var(--accent-bg);
+  }
+
+  td {
+    padding: 0.85rem 0.9rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    font-size: 0.95rem;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  .col-task {
+    width: 14%;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .col-desc {
+    width: 24%;
+  }
+
+  .col-steps {
+    width: 30%;
+  }
+
+  .col-why {
+    width: 32%;
+    background: var(--why-bg);
+    font-size: 0.9rem;
+    color: #4a463f;
+  }
+
+  .col-steps ol {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  .col-steps li {
+    margin-bottom: 0.4rem;
+  }
+
+  .col-steps li:last-child { margin-bottom: 0; }
+
+  .col-why p {
+    margin: 0 0 0.6rem;
+  }
+
+  .col-why p:last-child { margin-bottom: 0; }
+
+  .col-why ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  .col-why li {
+    margin-bottom: 0.2rem;
+  }
+
+  .note {
+    font-size: 0.85rem;
+    color: #7a7468;
+    font-style: italic;
+    margin: 0.5rem 0 2rem;
+    padding: 0.75rem 1rem;
+    border-left: 3px solid var(--line);
+    background: #f5f3ee;
+  }
+
+  @media (max-width: 800px) {
+    table, thead, tbody, th, td, tr { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 2px solid var(--line); padding: 0.75rem 0; }
+    td {
+      border-bottom: none;
+      padding: 0.35rem 0.9rem;
+    }
+    td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #7a7468;
+      margin-bottom: 0.2rem;
+    }
+    .col-task, .col-desc, .col-steps, .col-why { width: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Math Trade Organizer Playbook</h1>
+  <p class="subtitle">Draft table format — Phase 2: Offer Up Games. Round 3 revision.</p>
+
+  <div class="phase-header">Phase 2 — Offer Up Games</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="col-task">Task</th>
+        <th class="col-desc">Task Description</th>
+        <th class="col-steps">Task Steps</th>
+        <th class="col-why">Why Do This</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td class="col-task" data-label="Task">GeekList Creation &amp; Launch</td>
+        <td class="col-desc" data-label="Description">
+          The kickoff moment of this phase — the abstract excitement of the prior phase becomes a concrete, public artifact people can act on.
+        </td>
+        <td class="col-steps" data-label="Steps">
+          <ol>
+            <li>Clone the prior trade's GeekList rather than starting from scratch — bring over the rules/guidelines description.</li>
+            <li>Edit the ruleset only if needed (rare).</li>
+            <li>Update timing info in two places: human-readable at the top of the description, machine-readable at the bottom.</li>
+            <li>Create the GeekList as Public from the start (not a later toggle).</li>
+            <li>Run the OLWLG CGI registration step, using zip code 23113.</li>
+            <li>Once ~25+ games are added, take it out of Draft mode and publish.</li>
+          </ol>
+        </td>
+        <td class="col-why" data-label="Why">
+          <p>Creating it as Public from the start avoids a setup mistake that's awkward to fix later.</p>
+          <p>Cloning the prior GeekList preserves a long, mostly-reusable rules block instead of rebuilding it each trade.</p>
+          <p>23113 is the zip Troy uses for local no-ship trades.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="col-task" data-label="Task">Discord Channel Setup</td>
+        <td class="col-desc" data-label="Description">
+          The standing Math Trade RVA Discord server gets a new section of channels for this trade.
+        </td>
+        <td class="col-steps" data-label="Steps">
+          <ol>
+            <li>For each channel (what-where-when, updates, q-and-a, make-a-wish): copy the description from the prior trade's matching channel.</li>
+            <li>Create the new channel in this trade's section.</li>
+            <li>Save, then edit the channel and paste the description in.</li>
+          </ol>
+        </td>
+        <td class="col-why" data-label="Why">
+          <p>A separate channel section per trade keeps things organized — channels don't bleed into one another across trades.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="col-task" data-label="Task">Advertising &amp; Awareness</td>
+        <td class="col-desc" data-label="Description">
+          Three channels do the heavy lifting; a long tail of smaller channels matters too.
+        </td>
+        <td class="col-steps" data-label="Steps">
+          <ol>
+            <li>Post in the Richmond, VA Board Games Facebook group.</li>
+            <li>Lean on the Math Trade RVA Discord server — regulars returning, plus new joiners arriving via word of mouth between trades.</li>
+            <li>Once the GeekList is live, send a GeekMail blast to past participants.</li>
+            <li>Decide whether to post to BGG's broader Math Trade Announcement Thread.</li>
+            <li>Work the long-tail channels as opportunities arise.</li>
+          </ol>
+        </td>
+        <td class="col-why" data-label="Why">
+          <p>Facebook, Discord, and GeekMail each reach a different slice of the participant pool — new local awareness, returning regulars, and past participants directly.</p>
+          <p>Since this is a local trade, broadcasting to the Announcement Thread's international audience is optional.</p>
+          <p>Long-tail channels:</p>
+          <ul>
+            <li>RVA Board Gaming (Facebook)</li>
+            <li>Unplugged Discord Server</li>
+            <li>The Kallax Discord Server</li>
+            <li>VA Creepers Discord Server</li>
+            <li>RiVirCon Discord Server</li>
+            <li>Early Morning Gamers Discord Server</li>
+            <li>In-person meetups</li>
+            <li>QR codes (Discord invite, "ease-in guide")</li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="col-task" data-label="Task">Monitoring GeekList Additions</td>
+        <td class="col-desc" data-label="Description">
+          A recurring habit, several times a day: check what's new on the GeekList, sync it to OLWLG, and stay on top of participant questions in GeekList comments and on Discord.
+        </td>
+        <td class="col-steps" data-label="Steps">
+          <ol>
+            <li>Turn on the Tampermonkey sync script for this trade.</li>
+            <li>Check BGG for GeekList subscription notifications.</li>
+            <li>Browse new entries — note anything that looks insufficient or rule-violating.</li>
+            <li>Watch GeekList item comments for unanswered questions, especially from new participants.</li>
+            <li>Sync the GeekList to OLWLG (if Tampermonkey script is off for some reason).</li>
+            <li>Check Discord channels (what-where-when, updates, q-and-a, make-a-wish).</li>
+          </ol>
+        </td>
+        <td class="col-why" data-label="Why">
+          <p>One of the main reasons for syncing periodically is viewability — OLWLG's synced view is sortable and viewable as a single page, where the GeekList itself is painful to browse at 25 items per page.</p>
+          <p>Additionally, serious participants begin building out their want lists incrementally even during this two-week phase, and depend on that synced view staying current.</p>
+          <p>The organizer is making sure questions get answered, especially from new participants — and catching insufficient or rule-violating entries early.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="col-task" data-label="Task">Tracking &amp; Encouraging Participation</td>
+        <td class="col-desc" data-label="Description">
+          Tracking the ever-growing list of participants for the math trade, observing who hasn't yet joined, and reaching out to encourage them — both broad and targeted reach-outs happen during these two weeks.
+        </td>
+        <td class="col-steps" data-label="Steps">
+          <ol>
+            <li>Maintain the Math Trade Tracker Google Sheet. Upper section: this trade's participants. Lower section: historical participants.</li>
+            <li>As people join the current trade, move their row from the lower section to the upper section.</li>
+            <li>While scanning the lower section, identify past participants who haven't joined yet.</li>
+            <li>Personally reach out to those people — a check-in, an invite, a nudge.</li>
+          </ol>
+        </td>
+        <td class="col-why" data-label="Why">
+          <p>The two-week window gives organic growth room to happen — someone joins on day 3, tells a friend, and that friend joins on day 11.</p>
+          <p>The Tracker duplicates what OLWLG's user list already shows — but that's okay. Comparing who's joined against who's participated before surfaces exactly the people worth a personal reach-out. The two-week phase gives people time to jump in, and the outreach helps find people who'd want to but may have lost track of time or awareness.</p>
+          <p>The Tracker's three identities per person (BGG handle, real name, Discord handle) get published ahead of the Swap Phase and feed the name tags handed out at the swap event — the work done here pays off twice.</p>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <p class="note">
+    Scope note: this reflects the full "Troy edition" of running this trade — including the discretionary layer added by maintaining a year-round Discord community. Most math trades use only a BGG discussion thread (no Discord, no third identity to track). A leaner, approachable version aimed at a prospective organizer would largely be this table with everything Discord-dependent removed.
+  </p>
+
+</div>
+</body>
+</html>
